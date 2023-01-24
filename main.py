@@ -1,6 +1,5 @@
 import tkinter as tk
 from tkinter import *
-import os
 
 BG_COL = {
     "header": "#7286D3",
@@ -13,7 +12,6 @@ TXT_COL = {
 
 main = Tk()
 
-#----------DESIGNING MAIN MENU WINDOW----------#
 main.title("Python Loves PDF")
 main.iconbitmap("images\\icon.ico")
 
