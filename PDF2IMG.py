@@ -30,7 +30,7 @@ class Pdf2Image_Win(Toplevel):
         self.body_select_button = Button(body, text = "Select PDF file", font = BODY_TXT, command = self.open_pdf)
         self.body_select_button.pack(fill = BOTH, padx = 10, pady = 10, expand = 1)
 
-        body_save_button = Button(body, text = "Save...", font = BODY_TXT, command = self.save_images_folder)
+        body_save_button = Button(body, text = "Save as image(s)...", font = BODY_TXT, command = self.save_images_folder)
         body_save_button.pack(fill = BOTH, padx = 10, pady = 10, expand = 1)
 
     def open_pdf(self):
