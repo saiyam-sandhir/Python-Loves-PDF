@@ -1,5 +1,6 @@
 from pdf2jpg import pdf2jpg
 import tkinter as tk
+import tkinter.filedialog as fd
 from tkinter import *
 
 def converter(images_folder_path, pdf_path):
@@ -22,8 +23,16 @@ class Pdf2Image_Win(tk.Toplevel):
         body = Frame(self, bg = BG_COL["body"], height = 400)
         body.pack(fill = BOTH, expand = 1)
 
-        body_select_button = Button(body, text = "Select PDF file", font = ("Arial", 10, "bold"))
-        body_select_button.pack(fill = BOTH, padx = 10, pady = 10, expand = 1)
+        self.body_select_button = Button(body, text = "Select PDF file", font = ("Arial", 10, "bold"), command = self.open_pdf)
+        self.body_select_button.pack(fill = BOTH, padx = 10, pady = 10, expand = 1)
 
-        body_save_button = Button(body, text = "Save...", font = ("Arial", 10, "bold"))
+        body_save_button = Button(body, text = "Save...", font = ("Arial", 10, "bold"), command = self.save_images_folder)
         body_save_button.pack(fill = BOTH, padx = 10, pady = 10, expand = 1)
+
+    def open_pdf(self):
+        self.file_name = fd.askopenfile().name
+        self.body_select_button.config(text = self.file_name)
+
+    def save_images_folder(self):
+        location = fd.askdirectory()
+        converter(location, self.file_name)
