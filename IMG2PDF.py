@@ -1,4 +1,5 @@
-import tkinter as tk
+#MIT License Copyright (c) 2023 Saiyam Jain
+
 from tkinter import *
 import tkinter.filedialog as fd
 import img2pdf
@@ -16,27 +17,30 @@ def converter(img_path, pdf_path):
     #closing the pdf file
     pdfFile.close()
 
-class Image2Pdf_Win(tk.Toplevel):
-    def __init__(self, master, col_theme: list):
+class Image2Pdf_Win(Toplevel):
+    def __init__(self, master, theme: list):
         super().__init__(master)
-        BG_COL = col_theme[0]
-        TXT_COL = col_theme[1]
+        BG_COL = theme[0][0]
+        TXT_COL = theme[0][1]
+
+        HEADER_TXT = theme[1][0]
+        BODY_TXT = theme[1][1]
 
         self.title("Image to PDF")
         self.iconbitmap("images\\icon.ico")
 
         header = Frame(self, bg = BG_COL["header"])
         header.pack(fill = X)
-        header_label = Label(header, text = "📷 ➡ 📄", font = ("Bahnschrift", 50, 'bold'), background = BG_COL["header"], foreground = TXT_COL["header"])
+        header_label = Label(header, text = "📷 ➡ 📄", font = HEADER_TXT, background = BG_COL["header"], foreground = TXT_COL["header"])
         header_label.pack(pady = (0, 15))
 
         body = Frame(self, bg = BG_COL["body"], height = 400)
         body.pack(fill = BOTH, expand = 1)
 
-        self.body_select_button = Button(body, text = "Select Image file", font = ("Arial", 10, "bold"), command = self.open_image)
+        self.body_select_button = Button(body, text = "Select Image file", font = BODY_TXT, command = self.open_image)
         self.body_select_button.pack(fill = BOTH, padx = 10, pady = 10, expand = 1)
 
-        body_save_button = Button(body, text = "Save...", font = ("Arial", 10, "bold"), command = self.save_pdf)
+        body_save_button = Button(body, text = "Save...", font = BODY_TXT, command = self.save_pdf)
         body_save_button.pack(fill = BOTH, padx = 10, pady = 10, expand = 1)
 
     def open_image(self):
