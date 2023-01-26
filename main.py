@@ -20,6 +20,7 @@ main = Tk()
 
 main.title("Python Loves PDF")
 main.iconbitmap("images\\icon.ico")
+main.geometry("600x600")
 
 header = Frame(main, bg = BG_COL["header"])
 header.pack(fill = X)
@@ -28,6 +29,8 @@ header_label.pack(pady = (0,15))
 
 body = Frame(main, bg = BG_COL["body"])
 body.pack(fill = BOTH, expand = 1)
+
+#----------PDF & Image----------#
 
 body_LabelFrame_pdfNimg = LabelFrame(body, text = "PDF & Image", font = (BODY_TXT[0], BODY_TXT[1], "bold"), background = BG_COL["body"], foreground = TXT_COL["body"], relief = "ridge")
 body_LabelFrame_pdfNimg.pack(padx = 20, pady = 20, fill = X)
@@ -47,5 +50,33 @@ body_Img2Pdf_button = Button(body_LabelFrame_pdfNimg, image = img2pdf_image, com
 body_Img2Pdf_button.grid(column = 1, row = 0, pady = (10, 5))
 body_Img2Pdf_Label = Label(body_LabelFrame_pdfNimg, text = "Image ➡ PDF", font = BODY_TXT, background = BG_COL["body"], foreground = TXT_COL["body"])
 body_Img2Pdf_Label.grid(column = 1, row = 1, pady = (0, 10))
+
+
+#----------PDF Manipulation Tools----------#
+
+body_LabelFrame_pdfmanipulationtools = LabelFrame(body, text = "PDF Manipulation Tools", font = (BODY_TXT[0], BODY_TXT[1], "bold"), background = BG_COL["body"], foreground = TXT_COL["body"], relief = "ridge")
+body_LabelFrame_pdfmanipulationtools.pack(padx = 20, pady = 20, fill = X)
+
+Grid.columnconfigure(body_LabelFrame_pdfmanipulationtools, 0, weight = 1)
+Grid.columnconfigure(body_LabelFrame_pdfmanipulationtools, 1, weight = 1)
+Grid.columnconfigure(body_LabelFrame_pdfmanipulationtools, 2, weight = 1)
+
+mergepdf_image = PhotoImage(file = "images\\mergepdf.png")
+body_MergePdf_button = Button(body_LabelFrame_pdfmanipulationtools, image = mergepdf_image)
+body_MergePdf_button.grid(column = 0, row = 0, padx = 5, pady = (10, 5))
+body_MergePdf_Label = Label(body_LabelFrame_pdfmanipulationtools, text = "PDF1 + PDF2", font = BODY_TXT, background = BG_COL["body"], foreground = TXT_COL["body"])
+body_MergePdf_Label.grid(column = 0, row = 1, padx = 5, pady = (0, 10))
+
+splitpdf_image = PhotoImage(file = "images\\splitpdf.png")
+body_SplitPdf_button = Button(body_LabelFrame_pdfmanipulationtools, image = splitpdf_image)
+body_SplitPdf_button.grid(column = 1, row = 0, padx = 5, pady = (10, 5))
+body_SplitPdf_Label = Label(body_LabelFrame_pdfmanipulationtools, text = "   🪓 PDF   ", font = BODY_TXT, background = BG_COL["body"], foreground = TXT_COL["body"])
+body_SplitPdf_Label.grid(column = 1, row = 1, padx = 5, pady = (0, 10))
+
+rotatepdf_image = PhotoImage(file = "images\\rotatepdf.png")
+body_RotatePdf_button = Button(body_LabelFrame_pdfmanipulationtools, image = rotatepdf_image)
+body_RotatePdf_button.grid(column = 2, row = 0, padx = 5, pady = (10, 5))
+body_RotatePdf_Label = Label(body_LabelFrame_pdfmanipulationtools, text = "   🔄 PDF   ", font = BODY_TXT, background = BG_COL["body"], foreground = TXT_COL["body"])
+body_RotatePdf_Label.grid(column = 2, row = 1, padx = 5, pady = (0, 10))
 
 main.mainloop()
