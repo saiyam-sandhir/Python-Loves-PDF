@@ -1,5 +1,6 @@
 import PyPDF2
 from tkinter import *
+import tkinter.filedialog as fd
   
 def PDFrotate(origFileName, newFile_path, rotation):
   
@@ -40,9 +41,16 @@ class RotatePdf_Win(Toplevel):
         body = Frame(self, bg = BG_COL["body"], height = 400)
         body.pack(fill = BOTH, expand = 1)
 
-        self.body_select_button = Button(body, text = "Select PDF file", font = BODY_TXT)
+        self.body_select_button = Button(body, text = "Select PDF file", font = BODY_TXT, command = self.open_pdf)
         self.body_select_button.pack(fill = BOTH, padx = 10, pady = 10, expand = 1)
 
-        body_save_button = Button(body, text = "Save PDF...", font = BODY_TXT)
+        body_save_button = Button(body, text = "Save PDF...", font = BODY_TXT, command = self.save_new_pdf)
         body_save_button.pack(fill = BOTH, padx = 10, pady = 10, expand = 1)
         
+    def open_pdf(self):
+        self.file_name = fd.askopenfile().name
+        self.body_select_button.config(text = self.file_name)
+
+    def save_new_pdf(self):
+        location = fd.askdirectory()
+        PDFrotate(self.file_name, location, 90)
