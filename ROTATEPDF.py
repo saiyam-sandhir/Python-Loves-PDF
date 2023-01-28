@@ -44,5 +44,5 @@ class RotatePdf_Win(Toplevel):
         self.body_select_button.pack(fill = BOTH, padx = 10, pady = 10, expand = 1)
 
         body_save_button = Button(body, text = "Save PDF...", font = BODY_TXT)
-        body_save_button.pack(fil = BOTH, padx = 10, pady = 10, expand = 1)
+        body_save_button.pack(fill = BOTH, padx = 10, pady = 10, expand = 1)
         
