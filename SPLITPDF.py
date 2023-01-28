@@ -1,5 +1,6 @@
 import PyPDF2
 from tkinter import *
+import tkinter.filedialog as fd
   
 def PDFsplit(pdf_file, splits: list, output_path):
     pdfFileObj = open(pdf_file, 'rb')
@@ -40,15 +41,29 @@ class SplitPdf_Win(Toplevel):
         Grid.columnconfigure(body, 0, weight = 1)
         Grid.columnconfigure(body, 1, weight = 1)
 
-        self.body_select_button = Button(body, text = "Select PDF file", font = BODY_TXT)
+        self.body_select_button = Button(body, text = "Select PDF file", font = BODY_TXT, command = self.open_pdf)
         self.body_select_button.grid(column = 0, row = 0, columnspan = 2, padx = 10, pady = 10, sticky = EW)
 
-        body_spinbox_from = Spinbox(body, from_ = 0, to = 1, wrap = 1)
-        body_spinbox_from.grid(column = 0, row = 1, padx = 10, pady = 10)
+        From = IntVar()
+        self.body_spinbox_from = Spinbox(body, values = list(range(1, 1)), textvariable = From, wrap = True)
+        self.body_spinbox_from.grid(column = 0, row = 1, padx = 10, pady = 10)
 
-        body_spinbox_to = Spinbox(body, from_ = 0, to = 1, wrap = 1)
-        body_spinbox_to.grid(column = 1, row = 1, padx = 10, pady = 10)
+        To = IntVar()
+        self.body_spinbox_to = Spinbox(body, values = list(range(1, 1)), textvariable = To, wrap = True)
+        self.body_spinbox_to.grid(column = 1, row = 1, padx = 10, pady = 10)
 
-        body_save_button = Button(body, text = "Save the split PDF...", font = BODY_TXT)
+        body_save_button = Button(body, text = "Save the split PDF...", font = BODY_TXT, command = self.save_split_pdf)
         body_save_button.grid(column = 0, row = 2, columnspan = 2, padx = 10, pady = 10, sticky = EW)
 
+    def open_pdf(self):
+        self.file_name = fd.askopenfile().name
+
+        pdfFileObj = open(self.file_name, 'rb')
+        pdfReader = PyPDF2.PdfReader(pdfFileObj)
+        self.body_spinbox_from.config(values = list(range(1, len(pdfReader.pages) + 1)))
+        self.body_spinbox_to.config(values = list(range(1, len(pdfReader.pages) + 1)))
+        self.body_select_button.config(text = self.file_name)
+
+    def save_split_pdf(self):
+        location = fd.askdirectory()
+        PDFsplit(self.file_name, [int(self.body_spinbox_from.get()), int(self.body_spinbox_to.get())], location)
