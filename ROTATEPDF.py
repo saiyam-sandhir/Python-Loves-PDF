@@ -32,6 +32,7 @@ class RotatePdf_Win(Toplevel):
 
         self.title("Rotate PDF pages")
         self.iconbitmap("images\\icon.ico")
+        self.resizable(True, False)
 
         header = Frame(self, bg = BG_COL["header"])
         header.pack(fill = X)

@@ -12,6 +12,8 @@
 
 <p>You can directly download the source code or the project using the github features.</p>
 
+<br/>
+
 <h3>Contributions</h3>
 
 <p>You can help to contribute in the project by raising issues for some ideas and i might work on them if i have time.</p>

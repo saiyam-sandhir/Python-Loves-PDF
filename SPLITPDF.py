@@ -28,6 +28,7 @@ class SplitPdf_Win(Toplevel):
 
         self.title("Split PDF")
         self.iconbitmap("images\\icon.ico")
+        self.resizable(True, False)
 
         header = Frame(self, bg = BG_COL["header"])
         header.pack(fill = X)
@@ -44,16 +45,18 @@ class SplitPdf_Win(Toplevel):
         self.body_select_button = Button(body, text = "Select PDF file", font = BODY_TXT, command = self.open_pdf)
         self.body_select_button.grid(column = 0, row = 0, columnspan = 2, padx = 10, pady = 10, sticky = EW)
 
-        From = IntVar()
-        self.body_spinbox_from = Spinbox(body, values = list(range(1, 1)), textvariable = From, wrap = True)
-        self.body_spinbox_from.grid(column = 0, row = 1, padx = 10, pady = 10)
+        body_label_spinbox_from = Label(body, text = "From:", font = (BODY_TXT[0], 10, "bold"), background = BG_COL["body"], foreground = TXT_COL["body"])
+        body_label_spinbox_from.grid(column = 0, row = 1, padx = 10, sticky = W)
+        self.body_spinbox_from = Spinbox(body, values = list(range(1, 1)), wrap = True)
+        self.body_spinbox_from.grid(column = 0, row = 2, padx = 10, pady = (0,10))
 
-        To = IntVar()
-        self.body_spinbox_to = Spinbox(body, values = list(range(1, 1)), textvariable = To, wrap = True)
-        self.body_spinbox_to.grid(column = 1, row = 1, padx = 10, pady = 10)
+        body_label_spinbox_to = Label(body, text = "To:", font = (BODY_TXT[0], 10, "bold"), background = BG_COL["body"], foreground = TXT_COL["body"])
+        body_label_spinbox_to.grid(column = 1, row = 1, padx = 10, sticky = W)
+        self.body_spinbox_to = Spinbox(body, values = list(range(1, 1)), wrap = True)
+        self.body_spinbox_to.grid(column = 1, row = 2, padx = 10, pady = (0,10))
 
         body_save_button = Button(body, text = "Save the split PDF...", font = BODY_TXT, command = self.save_split_pdf)
-        body_save_button.grid(column = 0, row = 2, columnspan = 2, padx = 10, pady = 10, sticky = EW)
+        body_save_button.grid(column = 0, row = 3, columnspan = 2, padx = 10, pady = 10, sticky = EW)
 
     def open_pdf(self):
         self.file_name = fd.askopenfile().name

@@ -28,6 +28,7 @@ class Image2Pdf_Win(Toplevel):
 
         self.title("Image to PDF")
         self.iconbitmap("images\\icon.ico")
+        self.resizable(True, False)
 
         header = Frame(self, bg = BG_COL["header"])
         header.pack(fill = X)
